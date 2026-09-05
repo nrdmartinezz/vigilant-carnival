@@ -45,7 +45,7 @@ export function MobileNav() {
       {open && (
         <div
           id="mobile-nav"
-          className="bg-surface-base fixed inset-0 top-[var(--header-h,4.5rem)] z-40 overflow-y-auto overscroll-contain md:hidden"
+          className="bg-surface-base fixed inset-0 `top-(--header-h,4.5rem)` z-40 overflow-y-auto overscroll-contain md:hidden"
         >
           <Container as="nav" gap="none" aria-label="Mobile" className="py-4 pb-[max(2rem,env(safe-area-inset-bottom))]">
             <ul className="flex w-full flex-col">
