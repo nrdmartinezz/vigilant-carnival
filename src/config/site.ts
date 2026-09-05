@@ -146,5 +146,7 @@ export const formattedAddress = [
   `${site.business.address.locality}, ${site.business.address.region} ${site.business.address.postalCode}`,
 ].join(', ');
 
+export const mapsDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(formattedAddress)}`;
+
 /** No configured ID means the analytics bundle is never mounted at all. */
 export const hasAnalytics = Object.values(site.analytics).some(Boolean);

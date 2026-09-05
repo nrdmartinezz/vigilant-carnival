@@ -1,30 +1,13 @@
-import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Heading } from '@/components/ui/Heading';
 import { Section } from '@/components/ui/Section';
+import { Hero } from '@/components/home/Hero';
 import { site } from '@/config/site';
-import { navigation } from '@/config/navigation';
 
 export default function HomePage() {
-  const location = `${site.business.address.locality}, ${site.business.address.region}`;
-
   return (
     <>
-      <Section background="muted">
-        <Container width="narrow">
-          <p className="text-ink-brand text-sm font-semibold tracking-wide uppercase">{location}</p>
-          <Heading level={1} className="mt-3">
-            {site.tagline}
-          </Heading>
-          <p className="text-ink-muted mt-4 text-lg">{site.description}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {navigation.cta && <Button href={navigation.cta.href}>{navigation.cta.label}</Button>}
-            <Button href={`tel:${site.business.phoneHref}`} variant="secondary">
-              {site.business.phone}
-            </Button>
-          </div>
-        </Container>
-      </Section>
+      <Hero />
 
       <Section>
         <Container width="narrow">

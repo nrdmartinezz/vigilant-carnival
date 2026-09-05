@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" role="img" aria-label="Placeholder hero photograph">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6b7280"/>
+      <stop offset="0.45" stop-color="#3f4654"/>
+      <stop offset="1" stop-color="#1a1e27"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="70%" cy="30%" r="50%">
+      <stop offset="0" stop-color="#c4a35a" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#c4a35a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1100" fill="url(#sky)"/>
+  <rect width="1600" height="1100" fill="url(#glow)"/>
+  <rect x="180" y="220" width="420" height="560" rx="28" fill="#2b303c" opacity="0.55"/>
+  <rect x="720" y="160" width="700" height="720" rx="28" fill="#2b303c" opacity="0.4"/>
+</svg>

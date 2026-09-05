@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { MapPin, Menu, Phone, X } from 'lucide-react';
 import { navigation } from '@/config/navigation';
-import { site } from '@/config/site';
+import { mapsDirectionsUrl, site } from '@/config/site';
 import { isCurrentPath, panelLinks } from '@/lib/nav';
 import { cn } from '@/lib/cn';
 import { Button } from '@/components/ui/Button';
@@ -45,7 +45,7 @@ export function MobileNav() {
       {open && (
         <div
           id="mobile-nav"
-          className="bg-surface-base fixed inset-0 `top-(--header-h,4.5rem)` z-40 overflow-y-auto overscroll-contain md:hidden"
+          className="bg-surface-base fixed inset-0 top-(--header-h,4.5rem) z-40 overflow-y-auto overscroll-contain md:hidden"
         >
           <Container as="nav" gap="none" aria-label="Mobile" className="py-4 pb-[max(2rem,env(safe-area-inset-bottom))]">
             <ul className="flex w-full flex-col">
@@ -98,9 +98,19 @@ export function MobileNav() {
             <div className="mt-6 flex flex-col gap-3">
               <a
                 href={`tel:${site.business.phoneHref}`}
-                className="text-ink-base inline-flex min-h-11 items-center font-medium no-underline"
+                className="bg-surface-inverse text-ink-inverse inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 font-medium no-underline"
               >
-                {site.business.phone}
+                <Phone className="size-4" aria-hidden="true" />
+                Call Today
+              </a>
+              <a
+                href={mapsDirectionsUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+                className="bg-surface-inverse text-ink-inverse inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 font-medium no-underline"
+              >
+                <MapPin className="size-4" aria-hidden="true" />
+                Directions
               </a>
               {navigation.cta && (
                 <Button href={navigation.cta.href} className="w-full">

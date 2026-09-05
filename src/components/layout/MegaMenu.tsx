@@ -2,31 +2,47 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ChevronDown } from 'lucide-react';
 import { navigation } from '@/config/navigation';
 import { isCurrentPath, panelLinks } from '@/lib/nav';
 import { cn } from '@/lib/cn';
+
+function itemClass(current: boolean) {
+  return cn(
+    'inline-flex min-h-10 items-center gap-1 rounded-full px-4 text-sm font-medium no-underline',
+    current ? 'bg-surface-muted text-ink-base' : 'text-ink-base hover:bg-surface-muted',
+  );
+}
+
+function ItemLabel({ label, hasPanel }: { label: string; hasPanel: boolean }) {
+  return (
+    <>
+      {label}
+      {hasPanel && <ChevronDown className="size-3.5" aria-hidden="true" />}
+    </>
+  );
+}
 
 export function MegaMenu() {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
+    <nav aria-label="Primary" className="bg-surface-base flex items-center rounded-full px-2 py-1.5">
       {navigation.primary.map((item) => {
         const sublinks = panelLinks(item);
         const current = item.href ? isCurrentPath(pathname, item.href) : false;
+        const hasPanel = sublinks.length > 0;
+        const label = <ItemLabel label={item.label} hasPanel={hasPanel} />;
 
-        if (sublinks.length === 0) {
+        if (!hasPanel) {
           return (
             <Link
               key={item.label}
               href={item.href ?? '/'}
               aria-current={current ? 'page' : undefined}
-              className={cn(
-                'inline-flex min-h-11 items-center rounded-md px-3 font-medium no-underline',
-                current ? 'text-ink-brand' : 'text-ink-base hover:bg-neutral-100',
-              )}
+              className={itemClass(current)}
             >
-              {item.label}
+              {label}
             </Link>
           );
         }
@@ -37,17 +53,12 @@ export function MegaMenu() {
               <Link
                 href={item.href}
                 aria-current={current ? 'page' : undefined}
-                className={cn(
-                  'inline-flex min-h-11 items-center rounded-md px-3 font-medium no-underline',
-                  current ? 'text-ink-brand' : 'text-ink-base hover:bg-neutral-100',
-                )}
+                className={itemClass(current)}
               >
-                {item.label}
+                {label}
               </Link>
             ) : (
-              <span className="text-ink-base inline-flex min-h-11 items-center rounded-md px-3 font-medium">
-                {item.label}
-              </span>
+              <span className={itemClass(current)}>{label}</span>
             )}
 
             <div className="invisible absolute top-full left-0 z-50 pt-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">

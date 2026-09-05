@@ -1,40 +1,46 @@
 import Link from 'next/link';
-import { Hexagon, Phone } from 'lucide-react';
-import { navigation } from '@/config/navigation';
-import { site } from '@/config/site';
-import { Button } from '@/components/ui/Button';
+import { Hexagon, MapPin, Phone } from 'lucide-react';
+import { mapsDirectionsUrl, site } from '@/config/site';
 import { Container } from '@/components/ui/Container';
 import { MegaMenu } from './MegaMenu';
 import { MobileNav } from './MobileNav';
 
+const utilityClass =
+  'inline-flex min-h-11 items-center gap-2 rounded-full bg-surface-inverse px-5 text-sm font-medium text-ink-inverse no-underline';
+
 export function Header() {
   return (
-    <header className="border-line-base bg-surface-base sticky top-0 z-50 w-full border-b">
-      <Container as="div" layout="bar" gap="none" className="justify-between gap-4 py-4">
-        <Link href="/" className="text-ink-base flex items-center gap-2 font-semibold no-underline">
+    <header className="bg-surface-muted sticky top-0 z-50 w-full">
+      <Container as="div" layout="bar" gap="none" className="justify-between gap-4 py-5">
+        <Link
+          href="/"
+          className="bg-surface-base text-ink-base inline-flex items-center gap-2 rounded-xl px-4 py-3 font-semibold no-underline"
+        >
           <Hexagon className="text-brand-600 size-7" aria-hidden="true" />
           <span>{site.name}</span>
         </Link>
 
-        <MegaMenu />
+        <div className="hidden flex-col items-end gap-2 md:flex">
+          <div className="flex items-center gap-2">
+            <a href={`tel:${site.business.phoneHref}`} className={utilityClass}>
+              <Phone className="size-4" aria-hidden="true" />
+              Call Today
+            </a>
+            <a
+              href={mapsDirectionsUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+              className={utilityClass}
+            >
+              <MapPin className="size-4" aria-hidden="true" />
+              Directions
+            </a>
+          </div>
 
-        <div className="flex items-center gap-2">
-          <a
-            href={`tel:${site.business.phoneHref}`}
-            className="text-ink-base hidden min-h-11 items-center gap-2 px-2 font-medium no-underline lg:inline-flex"
-          >
-            <Phone className="size-4" aria-hidden="true" />
-            {site.business.phone}
-          </a>
-
-          {navigation.cta && (
-            <Button href={navigation.cta.href} size="sm" className="max-md:hidden">
-              {navigation.cta.label}
-            </Button>
-          )}
-
-          <MobileNav />
+          <MegaMenu />
         </div>
+
+        <MobileNav />
       </Container>
     </header>
   );
