@@ -37,3 +37,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated from tokens/*.json on predev / prebuild / tokens.
+src/styles/theme.css
